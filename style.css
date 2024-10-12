@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+* {
+  box-sizing: border-box;
+  font-family: "Inter";
+}
+body {
+  background: #FEFEFE;
+  color: #232323;
+  padding: 0;
+  margin: 0;
+  
+}
+
+/*estilizaçao da nav bar*/
+nav {
+  -webkit-app-region: drag;
+  border-bottom: 1px solid #dbdbdb;
+  height: 35px;
+  display: flex;
+  align-items: center;
+}
+.nav-buttons {
+  display: flex;
+  width: 80px;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+.nav-buttons > button {
+  border: none;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  height: 15px;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  /* shouldn't be able to drag
+    : drag blocks cursor events */
+}
+#close {
+  background: #FF605C;
+}
+#minimize {
+  background: #FFBD44;
+}
+#maximize {
+  background: #00CA4E;
+}
+#title {
+  /* -webkit-app-region: no-drag;
+    if you want to be able to drag
+    by clicking on the title,
+    comment this. Else, don't domment
+    this.
+  */
+  user-select: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+/*estilizaçao do corpo principal*/
+
+
+.corpoPrincipal {
+    background: linear-gradient(0.25turn, #000000, #29003b, #03009c);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 10px;
+    height: 400px;
+    width: 500px;
+    margin-left: 25%;
+    margin-top: 5%;
+}
+
+.perguntasResposta {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.perguntasResposta h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.perguntasResposta input {
+    background-color: #e6e1e1;
+}
+
+/*Estilo do modal de boas vindas*/
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.modal {
+    display: none; /* Esconde o modal inicialmente */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo escurecido */
+}
+
+.div_modal {
+    background-color: #fff;
+    margin: 10% auto; /* Ajustado para um pouco menos de margem */
+    padding: 30px; /* Aumentado o padding */
+    border-radius: 8px; /* Bordas arredondadas */
+    width: 80%;
+    max-width: 600px; /* Aumentado o tamanho máximo */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+    display: flex; /* Para alinhar imagem e texto lado a lado */
+    flex-direction: column; /* Para manter a estrutura vertical dos elementos */
+}
+
+h1 {
+    margin: 0; /* Remove margem padrão do h1 */
+    font-size: 1.5em; /* Aumenta o tamanho da fonte do título */
+    display: flex; /* Alinha imagem e texto na mesma linha */
+    align-items: center; /* Alinha verticalmente a imagem e o texto */
+}
+
+.ImagemRobo {
+    width: 80px; /* Aumentado o tamanho da imagem */
+    height: auto;
+    margin-right: 10px; /* Espaço entre a imagem e o texto */
+    margin-left: 45px;
+}
+
+p {
+    font-size: 1.2em; /* Aumenta o tamanho da fonte do parágrafo */
+}
