@@ -38,6 +38,7 @@ function iniciar() {
     // Código do quiz 
     const PerguntaEResposta = document.getElementById("PerguntaEResposta");
     const respostaUsuario = document.getElementById("respostaUsuario");
+    const foto = document.getElementById("foto")
 
     //array de perguntas
     const perguntas = [
@@ -74,8 +75,8 @@ function iniciar() {
             setTimeout(() => {
                 if (perguntas.length) {
                     perguntar();
-                } else {
-                    final(); // Certifique-se de que a função 'final()' está definida
+                } else if (perguntas.length < 4) {
+                    pergOwl()
                 }
             }, 2000);
         } else {
@@ -84,24 +85,50 @@ function iniciar() {
                 if (perguntas.length) {
                     perguntar();
                 } else {
-                    final(); // Certifique-se de que a função 'final()' está definida
+                   pergOwl(); // Certifique-se de que a função 'final()' está definida
                 }
             }, 2000);
         }
     }
 
+
     //perguntas do Owl
-    function pergOwl() {
-
+    function pergOwl(respostas) {
+        const respostaOwl = {
+            endereco: "",
+            autorizacaoParaINaCasa: ""
+        }
+    
         const pergOWl = [
-            {perguntaOwl: "5- "}
+            {perguntaOwl: "5- Onde voce mora?", respostaOwl: "qualquer resposta"},
+            {perguntaOwl: "6- Posso ir na sua casa?", respostaOwl: "sim"}
         ]
-
-        let queOwl;
-        PerguntaEResposta.textContent = queOwl
+    
+        let questaoOwl = pergOWl.shift(); // Obtém a primeira pergunta
+        PerguntaEResposta.textContent = questaoOwl.perguntaOwl;
+        respostaUsuario.value = ""; // Reseta o campo de resposta do usuário
+    
+        // Verifica se o nome é "Elifas" ou "Enaylie"
+        if (respostas.nome === "Elifas" || respostas.nome === "Enaylie") {
+            PerguntaEResposta.textContent = questaoOwl.perguntaOwl;
+    
+            // Espera pela resposta do usuário
+            if (respostaUsuario.value.trim().toLowerCase() === "joaquim inacio valente".toLowerCase()) {
+                PerguntaEResposta.textContent = "Que legal, você mora em Joaquim Inácio Valente, eu já sabia! hehehe";
+            } else {
+                PerguntaEResposta.textContent = `NAO ME ENGANE ${respostas.nome}`;
+            }
+        }
+    
+        // Pergunta se pode ir à casa
+        if (questaoOwl.perguntaOwl.includes("Posso ir na sua casa?")) {
+            respostaOwl.autorizacaoParaINaCasa = respostaUsuario.value;
+            if (respostaUsuario.value.trim().toLowerCase() === "sim") {
+                PerguntaEResposta.textContent = "Ok, na verdade eu já estou aí hahahaha!";
+            }
+        }
     }
-
-
+    
 
 
     // Função onde ele faz a pergunta 
@@ -114,6 +141,15 @@ function iniciar() {
 
     // Adicione o evento de teclado
     respostaUsuario.addEventListener("keydown", handleKeyDown);
+
+    function aparicaoDeImagens() {
+        foto.style.display = "none"
+        
+        setTimeout(() => {
+            foto.style.display = "block"
+        }, 1000)
+    }
+
 
     perguntar()
 }
