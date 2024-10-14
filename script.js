@@ -97,37 +97,48 @@ function iniciar() {
         const respostaOwl = {
             endereco: "",
             autorizacaoParaINaCasa: ""
-        }
+        };
     
         const pergOWl = [
-            {perguntaOwl: "5- Onde voce mora?", respostaOwl: "qualquer resposta"},
-            {perguntaOwl: "6- Posso ir na sua casa?", respostaOwl: "sim"}
-        ]
+            { perguntaOwl: "5- Onde você mora?", respostaOwl: "qualquer resposta" },
+            { perguntaOwl: "6- Posso ir na sua casa?", respostaOwl: "sim" }
+        ];
     
         let questaoOwl = pergOWl.shift(); // Obtém a primeira pergunta
         PerguntaEResposta.textContent = questaoOwl.perguntaOwl;
         respostaUsuario.value = ""; // Reseta o campo de resposta do usuário
     
-        // Verifica se o nome é "Elifas" ou "Enaylie"
-        if (respostas.nome === "Elifas" || respostas.nome === "Enaylie") {
-            PerguntaEResposta.textContent = questaoOwl.perguntaOwl;
+        respostaUsuario.addEventListener("keydown", function handleKeyDownOwl(event) {
+            if (event.key !== "Enter") return;
     
-            // Espera pela resposta do usuário
-            if (respostaUsuario.value.trim().toLowerCase() === "joaquim inacio valente".toLowerCase()) {
-                PerguntaEResposta.textContent = "Que legal, você mora em Joaquim Inácio Valente, eu já sabia! hehehe";
-            } else {
-                PerguntaEResposta.textContent = `NAO ME ENGANE ${respostas.nome}`;
-            }
-        }
+            // Captura a resposta do usuário
+            const resposta = respostaUsuario.value.trim().toLowerCase();
     
-        // Pergunta se pode ir à casa
-        if (questaoOwl.perguntaOwl.includes("Posso ir na sua casa?")) {
-            respostaOwl.autorizacaoParaINaCasa = respostaUsuario.value;
-            if (respostaUsuario.value.trim().toLowerCase() === "sim") {
-                PerguntaEResposta.textContent = "Ok, na verdade eu já estou aí hahahaha!";
+            // Verifica se o nome é "Elifas" ou "Enaylie"
+            if (respostas.nome === "Elifas" || respostas.nome === "Enaylie") {
+                if (questaoOwl.perguntaOwl.includes("Onde você mora?")) {
+                    respostaOwl.endereco = resposta;
+    
+                    // Verifica se a resposta é "joaquim inacio valente"
+                    if (resposta === "joaquim inacio valente".toLowerCase()) {
+                        PerguntaEResposta.textContent = "Que legal, você mora em Joaquim Inácio Valente, eu já sabia! hehehe";
+                    } else {
+                        PerguntaEResposta.textContent = `NAO ME ENGANE, ${respostas.nome}! Você não mora em Joaquim Inácio Valente.`;
+                    }
+                } else if (questaoOwl.perguntaOwl.includes("Posso ir na sua casa?")) {
+                    if (resposta === "sim") {
+                        PerguntaEResposta.textContent = "Ok, na verdade eu já estou aí hahahaha!";
+                    } else {
+                        PerguntaEResposta.textContent = "Tudo bem, talvez outra hora!";
+                    }
+                }
+    
+                // Remover o event listener para evitar múltiplas execuções
+                respostaUsuario.removeEventListener("keydown", handleKeyDownOwl);
             }
-        }
+        });
     }
+    
     
 
 
